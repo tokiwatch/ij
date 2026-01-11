@@ -1,92 +1,92 @@
 # ij - Interstitial Journaling CLI Tool
 
-`ij` は、作業の切り替え時（インタースティシャル）における思考、実績、次の行動の記録を最小限の摩擦で実現するための CLI ツールです。
+`ij` is a CLI tool designed to record thoughts, achievements, and next actions during work transitions (interstitial) with minimal friction.
 
-## 特徴
+## Features
 
-*   **クイック・ロギング:** 1コマンドで現在時刻とともにメモを記録。
-*   **デイリー・ログ自動生成:** 日付ごとに Markdown ファイル (`YYYY-MM-DD.md`) を自動作成。
-*   **高速な確認:** 今日のログや過去のログを瞬時にターミナルに表示。
-*   **検索機能:** 全ログファイルからのキーワード検索。
-*   **エディタ連携:** 使い慣れたエディタでログファイルを直接編集可能。
+*   **Quick Logging:** Record notes with the current timestamp in a single command.
+*   **Automatic Daily Log Generation:** Automatically creates Markdown files (`YYYY-MM-DD.md`) for each day.
+*   **Fast Review:** Instantly display today's logs or past logs in the terminal.
+*   **Search Function:** Keyword search across all log files.
+*   **Editor Integration:** Directly edit log files using your favorite editor.
 
-## インストール
+## Installation
 
-1. リポジトリをクローンします。
+1. Clone the repository.
    ```bash
    git clone https://github.com/username/ij.git
    cd ij
    ```
 
-2. スクリプトに実行権限を付与します。
+2. Grant execution permission to the script.
    ```bash
    chmod +x src/ij.py
    ```
 
-3. (推奨) 使いやすいようにエイリアスを設定するか、パスの通ったディレクトリにシンボリックリンクを作成します。
+3. (Recommended) Set up an alias or create a symbolic link in a directory included in your PATH for easier access.
    ```bash
-   # .bashrc や .zshrc などに追記
+   # Add to .bashrc or .zshrc
    alias ij='/path/to/ij/src/ij.py'
    ```
 
-## 使い方
+## Usage
 
-### ログの記録
-メッセージを引数として渡すと、現在時刻とともに記録されます。
+### Logging
+Pass a message as an argument to record it with the current timestamp.
 ```bash
-ij "企画書のドラフト作成完了。少し疲れた。"
+ij "Drafted the project plan. Feeling a bit tired."
 ```
-出力例:
+Output example:
 ```
-Logged: 14:05 企画書のドラフト作成完了。少し疲れた。
+Logged: 14:05 Drafted the project plan. Feeling a bit tired.
 ```
 
-### 今日のログを表示
-引数なしで実行すると、今日のログ一覧が表示されます。
+### Show Today's Log
+Run without arguments to list today's logs.
 ```bash
 ij
 ```
 
-### 検索
-過去の全ログからキーワードを検索します。
+### Search
+Search for a keyword across all past logs.
 ```bash
-ij -s "企画書"
+ij -s "project plan"
 ```
 
-### ログの編集
-今日の日付のログファイルをデフォルトのエディタで開きます。
+### Edit Log
+Open today's log file in your default editor.
 ```bash
 ij -e
 ```
 
-### 履歴の表示
-直近 `n` 日分のログを表示します。
+### Show History
+Display logs for the recent `n` days.
 ```bash
 ij -l 3
 ```
 
-## 設定
+## Configuration
 
-環境変数を設定することで、挙動をカスタマイズできます。
+You can customize the behavior by setting environment variables.
 
-| 環境変数 | 説明 | デフォルト値 |
+| Environment Variable | Description | Default Value |
 | --- | --- | --- |
-| `IJ_LOG_DIR` | ログファイルの保存先ディレクトリ | `~/.ij_logs` |
-| `EDITOR` | `ij -e` で使用するエディタ | `nano` |
+| `IJ_LOG_DIR` | Directory path for saving log files | `~/.ij_logs` |
+| `EDITOR` | Editor used with `ij -e` | `nano` |
 
-例 (`.bashrc` / `.zshrc`):
+Example (`.bashrc` / `.zshrc`):
 ```bash
 export IJ_LOG_DIR="$HOME/Dropbox/Journal"
 export EDITOR="vim"
 ```
 
-## 開発
+## Development
 
-### テストの実行
+### Running Tests
 ```bash
 python3 -m unittest discover tests
 ```
 
-## ライセンス
+## License
 
 [MIT License](LICENSE)
