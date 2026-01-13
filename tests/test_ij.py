@@ -57,5 +57,12 @@ class TestIj(unittest.TestCase):
             # 時刻フォーマットの確認 (- HH:MM message)
             self.assertRegex(content, r'- \d{2}:\d{2} ' + message)
 
+    @patch('ij.append_log')
+    def test_main_multiple_args(self, mock_append_log):
+        test_args = ['ij.py', 'Hello', 'World']
+        with patch.object(sys, 'argv', test_args):
+            ij.main()
+            mock_append_log.assert_called_once_with('Hello World')
+
 if __name__ == '__main__':
     unittest.main()

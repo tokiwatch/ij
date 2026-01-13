@@ -134,7 +134,7 @@ def main():
     # ij -e -> 編集
     # ij -l n -> 履歴
     
-    parser.add_argument("message", nargs="?", help="Log message to append")
+    parser.add_argument("message", nargs="*", help="Log message to append")
     parser.add_argument("-s", "--search", help="Search keyword in all logs")
     parser.add_argument("-e", "--edit", action="store_true", help="Open today's log in editor")
     parser.add_argument("-l", "--list-recent", type=int, metavar="N", help="Show logs for the recent N days")
@@ -149,7 +149,7 @@ def main():
     elif args.list_recent is not None:
         show_recent_logs(args.list_recent)
     elif args.message:
-        append_log(args.message)
+        append_log(" ".join(args.message))
     else:
         # 引数が何もない場合は今日のログを表示
         show_today_log()
