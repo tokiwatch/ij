@@ -36,6 +36,10 @@ Pass a message as an argument to record it with the current timestamp.
 ```bash
 ij "Drafted the project plan. Feeling a bit tired."
 ```
+You can also type without quotes:
+```bash
+ij Drafted the project plan. Feeling a bit tired.
+```
 Output example:
 ```
 Logged: 14:05 Drafted the project plan. Feeling a bit tired.
