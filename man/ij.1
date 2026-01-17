@@ -8,6 +8,9 @@ ij \- Interstitial Journaling CLI Tool
 .B echo "message" | ij
 .br
 .B ij
+[\fB\-i\fR]
+.br
+.B ij
 [\fB\-s\fR \fIkeyword\fR]
 .br
 .B ij
@@ -32,6 +35,9 @@ If a message argument is provided, it is appended to today's log file with the c
 .TP
 .B Standard Input
 If no arguments are provided and standard input is available, the content is read and appended to today's log file.
+.TP
+.BR \-i ", " \-\-interactive
+Run in interactive mode. Prompts for a log message.
 .TP
 .BR \-s ", " \-\-search " \fIkeyword\fR"
 Search for \fIkeyword\fR across all log files.

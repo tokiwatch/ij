@@ -80,6 +80,18 @@ def search_logs(keyword):
     if not found:
         print(f"No matches found for '{keyword}'.")
 
+def run_interactive_mode():
+    """インタラクティブモードでログを入力する"""
+    print("Enter your log message (Press Ctrl+C to cancel):")
+    try:
+        message = input("> ")
+        if message.strip():
+            append_log(message.strip())
+        else:
+            print("Empty message, nothing logged.")
+    except KeyboardInterrupt:
+        print("\nCancelled.")
+
 def open_editor():
     """今日のログファイルをエディタで開く"""
     ensure_log_dir()
@@ -138,11 +150,14 @@ def main():
     parser.add_argument("-s", "--search", help="Search keyword in all logs")
     parser.add_argument("-e", "--edit", action="store_true", help="Open today's log in editor")
     parser.add_argument("-l", "--list-recent", type=int, metavar="N", help="Show logs for the recent N days")
+    parser.add_argument("-i", "--interactive", action="store_true", help="Run in interactive mode")
 
     args = parser.parse_args()
 
     # 優先順位の処理
-    if args.edit:
+    if args.interactive:
+        run_interactive_mode()
+    elif args.edit:
         open_editor()
     elif args.search:
         search_logs(args.search)
