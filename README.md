@@ -50,6 +50,12 @@ You can also use standard input (pipe) to record logs. This is useful for long m
 echo "Long message..." | ij
 ```
 
+### Interactive Mode
+Launch an interactive prompt to enter your log. This is another way to avoid shell issues with long messages.
+```bash
+ij -i
+```
+
 ### Show Today's Log
 Run without arguments to list today's logs.
 ```bash

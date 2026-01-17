@@ -78,5 +78,15 @@ class TestIj(unittest.TestCase):
                 ij.main()
                 mock_append_log.assert_called_once_with('Stdin Message')
 
+    @patch('ij.append_log')
+    @patch('builtins.input', return_value='Interactive Message')
+    def test_interactive_mode(self, mock_input, mock_append_log):
+        """インタラクティブモードのテスト"""
+        test_args = ['ij.py', '-i']
+        with patch.object(sys, 'argv', test_args):
+            ij.main()
+            mock_input.assert_called_once()
+            mock_append_log.assert_called_once_with('Interactive Message')
+
 if __name__ == '__main__':
     unittest.main()
