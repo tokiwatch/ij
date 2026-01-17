@@ -45,6 +45,11 @@ Output example:
 Logged: 14:05 Drafted the project plan. Feeling a bit tired.
 ```
 
+You can also use standard input (pipe) to record logs. This is useful for long messages or integrating with other commands.
+```bash
+echo "Long message..." | ij
+```
+
 ### Show Today's Log
 Run without arguments to list today's logs.
 ```bash

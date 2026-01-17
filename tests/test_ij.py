@@ -6,6 +6,7 @@ import sys
 import os
 import shutil
 import tempfile
+import io
 
 # src ディレクトリをパスに追加してインポートできるようにする
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
@@ -63,6 +64,19 @@ class TestIj(unittest.TestCase):
         with patch.object(sys, 'argv', test_args):
             ij.main()
             mock_append_log.assert_called_once_with('Hello World')
+
+    @patch('ij.append_log')
+    def test_main_stdin(self, mock_append_log):
+        """標準入力からログを読み込むテスト"""
+        test_args = ['ij.py']
+        # sys.stdin をモック化し、isatty が False を返すようにする（パイプ入力のシミュレーション）
+        with patch.object(sys, 'argv', test_args):
+            with patch('sys.stdin', new=io.StringIO("Stdin Message")) as mock_stdin:
+                # StringIO はデフォルトで isatty() が False を返すことが多いが、
+                # 念のため明示的に False を返すように設定した方がより堅牢だが、
+                # io.StringIO() の挙動として isatty() は False なのでそのまま使う。
+                ij.main()
+                mock_append_log.assert_called_once_with('Stdin Message')
 
 if __name__ == '__main__':
     unittest.main()

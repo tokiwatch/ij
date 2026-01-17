@@ -5,6 +5,8 @@ ij \- Interstitial Journaling CLI Tool
 .B ij
 [\fImessage\fR]
 .br
+.B echo "message" | ij
+.br
 .B ij
 [\fB\-s\fR \fIkeyword\fR]
 .br
@@ -20,11 +22,16 @@ ij \- Interstitial Journaling CLI Tool
 .B ij
 is a CLI tool designed to record thoughts, achievements, and next actions during work transitions (interstitial) with minimal friction. It automatically handles daily log files formatted in Markdown.
 
-When invoked without arguments, it displays the log entries for the current day.
+When invoked without arguments and without standard input, it displays the log entries for the current day.
+
+It can also read the message from standard input (pipe), which is useful for long messages.
 .SH OPTIONS
 .TP
 .B \fImessage\fR
 If a message argument is provided, it is appended to today's log file with the current timestamp.
+.TP
+.B Standard Input
+If no arguments are provided and standard input is available, the content is read and appended to today's log file.
 .TP
 .BR \-s ", " \-\-search " \fIkeyword\fR"
 Search for \fIkeyword\fR across all log files.

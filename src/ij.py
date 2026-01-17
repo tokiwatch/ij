@@ -151,7 +151,16 @@ def main():
     elif args.message:
         append_log(" ".join(args.message))
     else:
-        # 引数が何もない場合は今日のログを表示
+        # 引数がなく、標準入力がパイプなどの場合（TTYでない場合）は標準入力を読み込む
+        if not sys.stdin.isatty():
+            # 標準入力からの読み込み
+            # strip() で前後の空白を除去し、空文字でない場合のみログ記録
+            stdin_message = sys.stdin.read().strip()
+            if stdin_message:
+                append_log(stdin_message)
+                return
+
+        # 引数も標準入力もない場合は今日のログを表示
         show_today_log()
 
 if __name__ == "__main__":
